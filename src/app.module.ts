@@ -13,7 +13,7 @@ import { HerosModule } from './heros/heros.module';
       url: process.env.DATABASE_URL,
       entities: [Hero],
       synchronize: true,
-      logging: true,
+      logger: new MyCustomLogger(true),
     }),
   ],
   controllers: [AppController],
