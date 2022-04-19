@@ -1,7 +1,9 @@
+import { HeroImage } from 'src/herosImages/heroImage.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -26,7 +28,11 @@ export class Hero {
   @Column()
   catch_phrase: string;
 
-  //images
+  // one image = one hero
+  @OneToMany(() => HeroImage, (heroImage) => heroImage.hero, {
+    nullable: true,
+  })
+  images: HeroImage[];
 
   @CreateDateColumn()
   createdAt: Date;
