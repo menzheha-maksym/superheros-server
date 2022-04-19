@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
@@ -41,5 +42,11 @@ export class HeroImageController {
       file.buffer,
       file.originalname,
     );
+  }
+
+  @Delete('delete')
+  deleteOne(@Body() id: string): boolean {
+    this.heroImageService.removeHeroImageById(id);
+    return true;
   }
 }
