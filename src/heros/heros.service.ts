@@ -16,6 +16,21 @@ export class HerosService {
     return this.herosRepository.find();
   }
 
+  async findWithPagination(options: {
+    limit: number;
+    skip: number;
+  }): Promise<{ data: Hero[]; count: number }> {
+    const [result, total] = await this.herosRepository.findAndCount({
+      take: options.limit,
+      skip: options.skip,
+    });
+
+    return {
+      data: result,
+      count: total,
+    };
+  }
+
   async findOneById(id: string): Promise<Hero> {
     return this.herosRepository.findOne(id);
   }

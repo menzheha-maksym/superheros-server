@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Request,
 } from '@nestjs/common';
 import { CreateHeroDto } from './dto/createHero.dto';
 import { UpdateHeroDto } from './dto/updateHero.dto';
@@ -19,6 +20,14 @@ export class HerosController {
   @Get()
   getAll(): Promise<Hero[]> {
     return this.herosServise.findAll();
+  }
+
+  @Get('pagination')
+  getPaginated(@Request() request): Promise<{ data: Hero[]; count: number }> {
+    return this.herosServise.findWithPagination({
+      limit: request.query.hasOwnProperty('limit') ? request.query.limit : 5,
+      skip: request.query.hasOwnProperty('skip') ? request.query.skip : 0,
+    });
   }
 
   @Get(':id')
