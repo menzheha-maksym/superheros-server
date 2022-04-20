@@ -12,16 +12,18 @@ export class MyCustomLogger extends AdvancedConsoleLogger implements Logger {
 
   logQuery(query: string, parameters?: any[], queryRunner?: QueryRunner) {
     if (parameters) {
-      for (let i = 0; i < parameters.length; i++) {
-        if (parameters[i].length > 200) {
-          if (typeof parameters[i] === 'string') {
-            parameters[i] = parameters[i].substring(0, 199) + '...';
+      const params = parameters.slice();
+      for (let i = 0; i < params.length; i++) {
+        if (params[i].length > 200) {
+          if (typeof params[i] === 'string') {
+            params[i] = params[i].substring(0, 199) + '...';
           } else {
-            parameters[i] = parameters[i].slice(0, 199);
+            params[i] = params[i].slice(0, 199);
           }
         }
       }
-
+      super.logQuery(query, params, queryRunner);
+    } else {
       super.logQuery(query, parameters, queryRunner);
     }
   }
