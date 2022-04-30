@@ -12,8 +12,8 @@ HEROS
 
 
 HERO IMAGE 
-| route                                     | method |          description           |
-| :---------------------------------------- | :----: | :----------------------------: |
-| http://localhost:4000/hero-image/:id      |  GET   |   get one image by image id    |
-| http://localhost:4000/hero-image/hero/:id |  GET   | get all hero images by hero id |
-| http://localhost:4000/hero-image/add      |  POST  |         add hero image         |
+| route                                         | method |          description           |
+| :-------------------------------------------- | :----: | :----------------------------: |
+| http://localhost:4000/hero-image/:id          |  GET   |   get one image by image id    |
+| http://localhost:4000/hero-image/hero/:heroId |  GET   | get all hero images by hero id |
+| http://localhost:4000/hero-image/add/:heroId  |  PUT   |         add hero image         |
