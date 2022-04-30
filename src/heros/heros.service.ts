@@ -13,7 +13,7 @@ export class HerosService {
   ) {}
 
   async findAll(): Promise<Hero[]> {
-    return this.herosRepository.find();
+    return this.herosRepository.find({ order: { updatedAt: 'DESC' } });
   }
 
   async findWithPagination(options: {
@@ -23,6 +23,9 @@ export class HerosService {
     const [result, total] = await this.herosRepository.findAndCount({
       take: options.limit,
       skip: options.skip,
+      order: {
+        updatedAt: 'DESC',
+      },
     });
 
     return {
