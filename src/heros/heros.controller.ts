@@ -46,8 +46,7 @@ export class HerosController {
   }
 
   @Delete('delete')
-  deleteOne(@Body() id: string): boolean {
-    this.herosServise.remove(id);
-    return true;
+  deleteOne(@Body() id: string): Promise<boolean> {
+    return this.herosServise.deleteOne(id);
   }
 }

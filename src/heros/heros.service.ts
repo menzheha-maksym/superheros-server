@@ -51,7 +51,11 @@ export class HerosService {
     return result.raw[0];
   }
 
-  async remove(id: string): Promise<void> {
-    await this.herosRepository.delete(id);
+  async deleteOne(id: string): Promise<boolean> {
+    const { affected } = await this.herosRepository.delete(id);
+    if (affected) {
+      return true;
+    }
+    return false;
   }
 }
