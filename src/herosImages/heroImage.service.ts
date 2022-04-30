@@ -37,7 +37,11 @@ export class HeroImageService {
     return ids;
   }
 
-  async removeHeroImageById(id: string): Promise<void> {
-    await this.herosImageRepository.delete(id);
+  async deleteHeroImageById(id: string): Promise<boolean> {
+    const { affected } = await this.herosImageRepository.delete(id);
+    if (affected) {
+      return true;
+    }
+    return false;
   }
 }

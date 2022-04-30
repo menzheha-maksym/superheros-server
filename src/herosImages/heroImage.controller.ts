@@ -45,8 +45,7 @@ export class HeroImageController {
   }
 
   @Delete('delete')
-  deleteOne(@Body() id: string): boolean {
-    this.heroImageService.removeHeroImageById(id);
-    return true;
+  deleteOne(@Body() id: string): Promise<boolean> {
+    return this.heroImageService.deleteHeroImageById(id);
   }
 }
