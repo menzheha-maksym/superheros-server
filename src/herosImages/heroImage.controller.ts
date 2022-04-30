@@ -4,7 +4,7 @@ import {
   Delete,
   Get,
   Param,
-  Post,
+  Put,
   Res,
   UploadedFile,
   UseInterceptors,
@@ -31,10 +31,10 @@ export class HeroImageController {
     return this.heroImageService.getManyHeroImageIdsByHeroId(heroId);
   }
 
-  @Post('add')
+  @Put('add/:heroId')
   @UseInterceptors(FileInterceptor('file'))
   async addHeroImage(
-    @Body('heroId') heroId: string,
+    @Param('heroId') heroId: string,
     @UploadedFile() file: Express.Multer.File,
   ) {
     return this.heroImageService.uploadImage(
